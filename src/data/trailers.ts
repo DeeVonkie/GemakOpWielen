@@ -50,7 +50,7 @@ export const trailers: Trailer[] = [
       weekend: 575,
       week: 1750,
     },
-    images: ['https://www.gemakopwielen.nl/image/in-aanbouw.png'],
+    images: ['../assets/in-aanbouw.png'],
     slug: 'luxe-4p',
   },
 ];
