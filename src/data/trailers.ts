@@ -29,13 +29,12 @@ export const trailers: Trailer[] = [
       'Onze eerste toiletwagen met hoogwaardige afwerking en comfort voor allerlei evenementen. Perfect voor kleinere bijeenkomsten waar comfort en luxe belangrijk zijn.',
     features: [
       '4 individuele toiletten met wastafel',
+      'Ruime hokjes voor ieders gemak',
       'Centrale verwarming voor optimaal comfort',
-      'LED-verlichting met sfeervolle accenten',
+      'Sfeervolle LED-verlichting',
       'Luxe interieur met hoogwaardige afwerking',
-      'Ruime, goed verlichte spiegels',
-      'Anti-slip vloer voor extra veiligheid',
-      'Automatische ventilatie',
-      'Energiezuinig systeem'
+      'Toevoer via een tuinslang',
+      'Afvoer via het riool'
     ],
     specifications: {
       toilets: 4,
@@ -47,11 +46,11 @@ export const trailers: Trailer[] = [
       water: '3/4" aansluiting',
     },
     pricing: {
-      day: 295,
-      weekend: 495,
-      week: 1195,
+      day: 350,
+      weekend: 575,
+      week: 1750,
     },
-    images: ['/images/vip-trailer.jpg'],
+    images: ['https://www.gemakopwielen.nl/image/in-aanbouw.png'],
     slug: 'luxe-4p',
   },
 ];

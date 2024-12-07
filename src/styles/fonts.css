@@ -1,12 +1,4 @@
 @font-face {
-  font-family: 'Nekst';
-  src: url('https://gemakopwielen.nl/fonts/Nekst-Bold.otf') format('opentype');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
   font-family: 'Montserrat';
   src: url('https://gemakopwielen.nl/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
   font-weight: 100 900;
@@ -16,7 +8,7 @@
 
 /* Apply Nekst font to all headings by default */
 h1, h2, h3, h4 {
-  font-family: 'Nekst', sans-serif !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-weight: bold !important;
 }
 
@@ -29,7 +21,7 @@ h1.font-sans,
 h2.font-sans,
 h3.font-sans,
 h4.font-sans {
-  font-family: 'Nekst', sans-serif !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-weight: 700 !important;
 }
 
