@@ -1,0 +1,45 @@
+---
+import type { Trailer } from '../data/trailers';
+import TrailerFeatures from './TrailerFeatures.astro';
+import TrailerPricing from './TrailerPricing.astro';
+
+interface Props {
+  trailer: Trailer;
+}
+
+const { trailer } = Astro.props;
+---
+
+<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+  <div class="grid grid-cols-1 lg:grid-cols-2">
+    <div class="relative h-[500px] lg:h-auto">
+      <img
+        src={trailer.images[0]}
+        alt={trailer.title}
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+    </div>
+    <div class="p-8 lg:p-12">
+      <h2 class="text-3xl font-bold text-gray-900">{trailer.title}</h2>
+      <p class="mt-4 text-lg text-gray-600">{trailer.description}</p>
+      
+      <TrailerFeatures features={trailer.features} />
+      <TrailerPricing pricing={trailer.pricing} />
+
+      <div class="mt-8 flex space-x-4">
+        <a
+          href={`/trailers/${trailer.slug}`}
+          class="flex-1 text-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+        >
+          Meer Info
+        </a>
+        <a
+          href={`/boeken?trailer=${trailer.slug}`}
+          class="flex-1 text-center px-6 py-3 border border-primary-700 rounded-md shadow-sm text-base font-medium text-primary-700 hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+        >
+          Direct Boeken
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

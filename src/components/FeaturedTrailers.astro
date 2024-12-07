@@ -1,0 +1,83 @@
+---
+import TrailerCard from './TrailerCard.astro';
+import SingleFeaturedTrailer from './SingleFeaturedTrailer.astro';
+import { trailers } from '../data/trailers';
+
+// Select the first 3 trailers as featured
+const featuredTrailers = trailers.slice(0, 3);
+
+const getTitle = (count: number) => {
+  if (count === 1) return "Onze Luxe Toilet Trailer";
+  if (count === 2) return "Onze Toilet Trailers";
+  return "Onze Populaire Trailers";
+};
+
+const getDescription = (count: number) => {
+  if (count === 1) return "Ontdek onze hoogwaardige mobiele toilet trailer";
+  if (count === 2) return "Bekijk onze selectie van mobiele toilet trailers";
+  return "Ontdek onze meest gevraagde mobiele toilet trailers";
+};
+---
+
+<section class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+        {getTitle(featuredTrailers.length)}
+      </h2>
+      <p class="mt-4 text-xl text-gray-600">
+        {getDescription(featuredTrailers.length)}
+      </p>
+    </div>
+
+    <div class="mt-12">
+      {featuredTrailers.length === 1 ? (
+        <SingleFeaturedTrailer trailer={featuredTrailers[0]} />
+      ) : featuredTrailers.length === 2 ? (
+        <div class="max-w-5xl mx-auto">
+          <div class="grid md:grid-cols-2 gap-8">
+            {featuredTrailers.map(trailer => (
+              <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-[1.02]">
+                <div class="relative h-64">
+                  <img
+                    src={trailer.images[0]}
+                    alt={trailer.title}
+                    class="absolute inset-0 w-full h-full object-cover"
+                  />
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-bold text-gray-900">{trailer.title}</h3>
+                  <p class="mt-2 text-gray-600">{trailer.description}</p>
+                  <ul class="mt-4 space-y-2">
+                    {trailer.features.slice(0, 3).map(feature => (
+                      <li class="flex items-center text-gray-600">
+                        <svg class="h-5 w-5 text-primary-700 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <div class="mt-6 flex space-x-3">
+                    <a href={`/trailers/${trailer.slug}`} class="flex-1 text-center px-4 py-2 bg-primary-700 text-white rounded-md hover:bg-primary-800">
+                      Meer Info
+                    </a>
+                    <a href={`/boeken?trailer=${trailer.slug}`} class="flex-1 text-center px-4 py-2 border border-primary-700 text-primary-700 rounded-md hover:bg-primary-50">
+                      Direct Boeken
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {featuredTrailers.map(trailer => (
+            <TrailerCard {...trailer} />
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</section>

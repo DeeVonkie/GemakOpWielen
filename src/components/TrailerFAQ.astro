@@ -1,0 +1,102 @@
+---
+const faqs = [
+  {
+    question: "Wat zijn de leveringsvoorwaarden?",
+    answer: "Wij leveren en plaatsen de trailer op de door u gewenste locatie. De locatie moet goed bereikbaar zijn en er moet voldoende ruimte zijn om de trailer te plaatsen. De ondergrond moet vlak en stevig zijn."
+  },
+  {
+    question: "Hoe werkt de wateraansluiting?",
+    answer: "De trailer heeft een standaard 3/4\" wateraansluiting nodig. Als er geen wateraansluiting beschikbaar is, kunnen we ook een watertank plaatsen (meerprijs)."
+  },
+  {
+    question: "Wat zijn de stroomvereisten?",
+    answer: "De trailer heeft een 230V - 16A stroomaansluiting nodig. Bij geen stroomvoorziening kunnen wij een aggregaat verzorgen (meerprijs)."
+  },
+  {
+    question: "Is er schoonmaakservice beschikbaar?",
+    answer: "Ja, wij zorgen dat de toiletwagen na uw boeking wordt schoongemaakt. Dit zit in de totaalprijs inbegrepen. Wilt u de toiletwagen tussentijds schoon laten maken? Geef dit aan bij uw boeking, dan kijken we wat de mogelijkheden zijn."
+  },
+  {
+    question: "Wat gebeurt er bij een storing?",
+    answer: "Mocht u te maken krijgen met een storing of defect, neem dan zo snel mogelijk contact op met +31 6 81 52 81 59. Wij proberen u dan zo snel mogelijk te helpen."
+  }
+];
+---
+
+<div class="bg-white shadow overflow-hidden sm:rounded-lg mt-16">
+  <div class="px-6 py-5 sm:px-8">
+    <h3 class="text-lg leading-6 font-medium text-gray-900">Veelgestelde Vragen</h3>
+  </div>
+  <div class="border-t border-gray-200">
+    <dl class="divide-y divide-gray-200">
+      {faqs.map((faq, index) => (
+        <div class="faq-item">
+          <button
+            type="button"
+            class="w-full px-6 py-6 sm:px-8 text-left flex justify-between items-center hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-colors"
+            aria-expanded="false"
+          >
+            <dt class="text-sm font-medium text-gray-900">{faq.question}</dt>
+            <span class="ml-6 h-7 flex items-center">
+              <svg 
+                class="rotate-0 h-6 w-6 transform transition-transform duration-200" 
+                xmlns="http://www.w3.org/2000/svg" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </span>
+          </button>
+          <dd class="answer-wrapper overflow-hidden max-h-0 transition-[max-height] duration-300 ease-in-out">
+            <div class="px-6 pt-4 pb-6 sm:px-8">
+              <p class="text-sm text-gray-600">{faq.answer}</p>
+            </div>
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.faq-item button').forEach(button => {
+    button.addEventListener('click', () => {
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      const wrapper = button.nextElementSibling;
+      const answer = wrapper.firstElementChild;
+      const icon = button.querySelector('svg');
+      
+      // Get the scroll height of the answer content
+      const scrollHeight = answer.scrollHeight;
+      
+      // Toggle the answer visibility with animation
+      if (!expanded) {
+        wrapper.style.maxHeight = scrollHeight + 'px';
+      } else {
+        wrapper.style.maxHeight = '0px';
+      }
+      
+      // Update the expanded state
+      button.setAttribute('aria-expanded', !expanded);
+      
+      // Rotate the icon
+      icon.style.transform = expanded ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+  });
+</script>
+
+<style>
+  .faq-item button:hover {
+    background-color: rgba(0, 0, 0, 0.025);
+  }
+  
+  .faq-item svg {
+    color: #4B5563;
+  }
+
+  .answer-wrapper {
+    max-height: 0;
+  }
+</style>

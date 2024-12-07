@@ -1,0 +1,21 @@
+---
+interface Props {
+  features: string[];
+}
+
+const { features } = Astro.props;
+---
+
+<div class="mt-8">
+  <h3 class="text-lg font-semibold text-gray-900">Kenmerken</h3>
+  <ul class="mt-4 grid grid-cols-1 gap-4">
+    {features.map(feature => (
+      <li class="flex items-center text-gray-600">
+        <svg class="h-5 w-5 text-primary-700 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <span class="text-base">{feature}</span>
+      </li>
+    ))}
+  </ul>
+</div>

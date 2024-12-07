@@ -1,0 +1,37 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  features: string[];
+  image: string;
+  slug: string;
+}
+
+const { title, description, features, image, slug } = Astro.props;
+---
+
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+  <img src={image} alt={title} class="w-full h-48 object-cover" />
+  <div class="p-6">
+    <h3 class="text-xl font-semibold text-gray-900">{title}</h3>
+    <p class="mt-2 text-gray-600">{description}</p>
+    <ul class="mt-4 space-y-2">
+      {features.map(feature => (
+        <li class="flex items-center text-gray-600">
+          <svg class="h-5 w-5 text-primary-700 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          {feature}
+        </li>
+      ))}
+    </ul>
+    <div class="mt-6 flex space-x-3">
+      <a href={`/trailers/${slug}`} class="flex-1 text-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-700 hover:bg-primary-800">
+        Meer Info
+      </a>
+      <a href={`/boeken?trailer=${slug}`} class="flex-1 text-center px-4 py-2 border border-primary-700 rounded-md shadow-sm text-sm font-medium text-primary-700 bg-white hover:bg-primary-50">
+        Direct Boeken
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,111 @@
+---
+const links = [
+  { text: "Home", href: "/" },
+  { text: "Trailers", href: "/trailers" },
+  { text: "Over Ons", href: "/over-ons" },
+  { text: "Contact", href: "/contact" },
+];
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) => {
+  if (href === '/') {
+    return currentPath === href;
+  }
+  return currentPath.startsWith(href);
+};
+---
+
+<header class="fixed top-0 left-0 right-0 bg-white z-50 transition-shadow duration-300" id="main-header">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-20">
+      <div class="flex">
+        <a href="/" class="flex items-center">
+          <img 
+            src="https://gemakopwielen.nl/image/PNG/LOGO_PNG.png" 
+            alt="Gemak op Wielen Logo" 
+            class="h-36"
+          />
+        </a>
+      </div>
+      <div class="hidden sm:flex sm:space-x-8">
+        {links.map(link => (
+          <a
+            href={link.href}
+            class={`relative inline-flex items-center px-1 pt-1 text-sm font-medium group ${
+              isActive(link.href)
+                ? 'text-primary-700'
+                : 'text-gray-700 hover:text-primary-700'
+            }`}
+          >
+            {link.text}
+            <span class={`absolute bottom-0 left-0 w-full h-0.5 bg-primary-700 transform origin-left transition-transform duration-300 ease-out ${
+              isActive(link.href)
+                ? 'scale-x-100'
+                : 'scale-x-0 group-hover:scale-x-100'
+            }`}></span>
+          </a>
+        ))}
+      </div>
+      <div class="flex items-center sm:hidden">
+        <button 
+          type="button" 
+          class="text-gray-700 hover:text-primary-700"
+          id="mobile-menu-button"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open menu</span>
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="sm:hidden hidden" id="mobile-menu">
+      <div class="pt-2 pb-3 space-y-1">
+        {links.map(link => (
+          <a
+            href={link.href}
+            class={`block pl-3 pr-4 py-2 text-base font-medium border-l-4 ${
+              isActive(link.href)
+                ? 'border-primary-700 text-primary-700 bg-primary-50'
+                : 'border-transparent text-gray-700 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-900'
+            }`}
+          >
+            {link.text}
+          </a>
+        ))}
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Spacer to prevent content from being hidden under fixed header -->
+<div class="h-20"></div>
+
+<script>
+  const header = document.getElementById('main-header');
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  // Handle mobile menu
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', () => {
+      const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+      mobileMenuButton.setAttribute('aria-expanded', (!isExpanded).toString());
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+
+  // Handle scroll shadow
+  if (header) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 0) {
+        header.classList.add('shadow-md');
+      } else {
+        header.classList.remove('shadow-md');
+      }
+    });
+  }
+</script>
