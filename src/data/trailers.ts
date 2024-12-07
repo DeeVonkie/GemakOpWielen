@@ -50,7 +50,7 @@ export const trailers: Trailer[] = [
       weekend: 575,
       week: 1750,
     },
-    images: ['../assets/in-aanbouw.png'],
+    images: ['/images/in-aanbouw.png'],
     slug: 'luxe-4p',
   },
 ];
