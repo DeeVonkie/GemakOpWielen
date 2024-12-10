@@ -5,7 +5,7 @@ import node from "@astrojs/node";
 
 export default defineConfig({
   integrations: [tailwind(), alpinejs()],
-  output: 'server',
+  output: 'hybrid',
   adapter: node({
     mode: 'standalone'
   })
