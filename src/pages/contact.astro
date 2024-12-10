@@ -127,6 +127,7 @@ import Layout from '../layouts/Layout.astro';
           <div>
             <button
               type="submit"
+              id="submit-button"
               class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
             >
               Verstuur Bericht
@@ -142,6 +143,7 @@ import Layout from '../layouts/Layout.astro';
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const errorDiv = document.getElementById('form-error') as HTMLDivElement;
   const successDiv = document.getElementById('form-success') as HTMLDivElement;
+  const submitButton = document.getElementById('submit-button') as HTMLButtonElement;
 
   function showError(message: string) {
     errorDiv.textContent = message;
@@ -155,12 +157,18 @@ import Layout from '../layouts/Layout.astro';
     errorDiv.classList.add('hidden');
   }
 
+  function setLoading(isLoading: boolean) {
+    submitButton.disabled = isLoading;
+    submitButton.textContent = isLoading ? 'Bezig met versturen...' : 'Verstuur Bericht';
+  }
+
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     // Reset messages
     errorDiv.classList.add('hidden');
     successDiv.classList.add('hidden');
+    setLoading(true);
 
     try {
       const formData = new FormData(form);
@@ -180,11 +188,13 @@ import Layout from '../layouts/Layout.astro';
         throw new Error(result.error || 'Er is een fout opgetreden');
       }
 
-      showSuccess('Bedankt voor uw bericht. We nemen zo spoedig mogelijk contact met u op.');
+      showSuccess(result.message || 'Bedankt voor uw bericht. We nemen zo spoedig mogelijk contact met u op.');
       form.reset();
     } catch (error) {
       console.error('Error:', error);
       showError(error instanceof Error ? error.message : 'Er is een fout opgetreden bij het versturen van uw bericht. Probeer het later opnieuw.');
+    } finally {
+      setLoading(false);
     }
   });
 </script>
