@@ -15,7 +15,7 @@ const trailerOptions = trailers.map(trailer => ({
 const eventTypeOptions = [
   { value: 'festival', label: 'Festival' },
   { value: 'bruiloft', label: 'Bruiloft' },
-  { value: 'private-party', label: 'Privé feest' },
+    { value: 'private-party', label: 'Privé feest' },
   { value: 'bedrijfsevenement', label: 'Bedrijfsevenement' },
   { value: 'bouwplaats', label: 'Bouwplaats' },
   { value: 'anders', label: 'Anders' }
@@ -246,22 +246,26 @@ const eventTypeOptions = [
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    const formElement = e.target as HTMLFormElement;
-    const submitButton = formElement.querySelector('button[type="submit"]') as HTMLButtonElement;
-    
-    // Disable submit button to prevent double submission
-    submitButton.disabled = true;
-    submitButton.textContent = 'Versturen...';
-    
+    const formData = new FormData(e.target as HTMLFormElement);
+    const data = Object.fromEntries(formData.entries());
+
     try {
       const response = await fetch('/api/submit-booking', {
         method: 'POST',
-        body: new FormData(formElement),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...data,
+          cleaning: formData.has('cleaning'),
+          watertank: formData.has('watertank'),
+          generator: formData.has('generator'),
+        }),
       });
-      
+
       if (response.ok) {
         alert('Bedankt voor uw aanvraag. We nemen zo spoedig mogelijk contact met u op.');
-        formElement.reset();
+        (e.target as HTMLFormElement).reset();
       } else {
         const error = await response.json();
         throw new Error(error.message || 'Er is een fout opgetreden');
@@ -269,10 +273,6 @@ const eventTypeOptions = [
     } catch (error) {
       console.error('Error:', error);
       alert('Er is een fout opgetreden bij het versturen van uw aanvraag. Probeer het later opnieuw.');
-    } finally {
-      // Re-enable submit button
-      submitButton.disabled = false;
-      submitButton.textContent = 'Aanvraag Versturen';
     }
   });
 </script>
