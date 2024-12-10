@@ -1,45 +1,17 @@
 import type { APIRoute } from 'astro';
+import { contactFormSchema } from '../../utils/validation';
 import { sendContactEmail } from '../../utils/mailer';
-import type { ContactFormData } from '../../types/forms';
+import { ZodError } from 'zod';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const data = await request.json() as ContactFormData;
+    const data = await request.json();
 
-    // Validate required fields
-    if (!data.name || !data.email || !data.phone || !data.message) {
-      return new Response(
-          JSON.stringify({
-            success: false,
-            error: 'Alle velden zijn verplicht'
-          }),
-          {
-            status: 400,
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          }
-      );
-    }
+    // Validate the form data
+    const validatedData = contactFormSchema.parse(data);
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(data.email)) {
-      return new Response(
-          JSON.stringify({
-            success: false,
-            error: 'Ongeldig e-mailadres'
-          }),
-          {
-            status: 400,
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          }
-      );
-    }
-
-    await sendContactEmail(data);
+    // Send the email
+    await sendContactEmail(validatedData);
 
     return new Response(
         JSON.stringify({
@@ -55,6 +27,22 @@ export const POST: APIRoute = async ({ request }) => {
     );
   } catch (error) {
     console.error('Error submitting contact form:', error);
+
+    if (error instanceof ZodError) {
+      return new Response(
+          JSON.stringify({
+            success: false,
+            error: error.errors[0].message
+          }),
+          {
+            status: 400,
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
+      );
+    }
+
     return new Response(
         JSON.stringify({
           success: false,
