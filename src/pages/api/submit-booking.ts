@@ -1,27 +1,62 @@
 import type { APIRoute } from 'astro';
-import { sendBookingEmail } from '../../utils/email';
-import { getTrailerBySlug } from '../../data/trailers';
+import { bookingFormSchema } from '../../utils/validation';
+import { sendBookingEmail } from '../../utils/mailer';
+import { ZodError } from 'zod';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await request.json();
-    const trailer = getTrailerBySlug(data.trailer);
 
-    if (!trailer) {
-      return new Response(JSON.stringify({ error: 'Trailer niet gevonden' }), {
-        status: 400,
-      });
-    }
-
-    await sendBookingEmail(data, trailer);
-
-    return new Response(JSON.stringify({ success: true }), {
-      status: 200,
+    // Validate the form data
+    const validatedData = bookingFormSchema.parse({
+      ...data,
+      expectedGuests: parseInt(data.expectedGuests)
     });
+
+    // Send the email
+    await sendBookingEmail(validatedData);
+
+    return new Response(
+        JSON.stringify({
+          success: true,
+          message: 'Boeking succesvol verzonden'
+        }),
+        {
+          status: 200,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+    );
   } catch (error) {
     console.error('Error submitting booking:', error);
-    return new Response(JSON.stringify({ error: 'Er is een fout opgetreden' }), {
-      status: 500,
-    });
+
+    if (error instanceof ZodError) {
+      return new Response(
+          JSON.stringify({
+            success: false,
+            error: error.errors[0].message
+          }),
+          {
+            status: 400,
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
+      );
+    }
+
+    return new Response(
+        JSON.stringify({
+          success: false,
+          error: 'Er is een fout opgetreden bij het versturen van de boeking'
+        }),
+        {
+          status: 500,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+    );
   }
 };

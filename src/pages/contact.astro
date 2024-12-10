@@ -139,39 +139,35 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <script>
+  import { validateForm, handleFormSubmission } from '../utils/form-handler';
+
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const errorDiv = document.getElementById('form-error') as HTMLDivElement;
   const successDiv = document.getElementById('form-success') as HTMLDivElement;
 
-  form?.addEventListener('submit', async (e) => {
+  form?.addEventListener('submit', (e) => {
     e.preventDefault();
 
     // Reset messages
     errorDiv.classList.add('hidden');
     successDiv.classList.add('hidden');
 
-    const formData = new FormData(e.target as HTMLFormElement);
-    const data = Object.fromEntries(formData.entries());
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries()) as Record<string, string>;
+
+    // Validate form
+    const errors = validateForm(data);
+    if (errors.length > 0) {
+      errorDiv.textContent = errors.join(', ');
+      errorDiv.classList.remove('hidden');
+      return;
+    }
 
     try {
-      const response = await fetch('/api/submit-contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        successDiv.textContent = 'Bedankt voor uw bericht. We nemen zo spoedig mogelijk contact met u op.';
-        successDiv.classList.remove('hidden');
-        form.reset();
-      } else {
-        errorDiv.textContent = result.error || 'Er is een fout opgetreden bij het versturen van uw bericht.';
-        errorDiv.classList.remove('hidden');
-      }
+      handleFormSubmission(data);
+      successDiv.textContent = 'Bedankt voor uw bericht. We nemen zo spoedig mogelijk contact met u op.';
+      successDiv.classList.remove('hidden');
+      form.reset();
     } catch (error) {
       console.error('Error:', error);
       errorDiv.textContent = 'Er is een fout opgetreden bij het versturen van uw bericht. Probeer het later opnieuw.';
