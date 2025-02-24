@@ -359,7 +359,7 @@ const selectedTrailerData = trailers.find(trailer => trailer.slug === selectedTr
   window.updateSelectedTrailer = (selectedTrailer) => {
     const trailerData = getTrailerById(selectedTrailer);
     const trailerImage = trailerData ? trailerData.images[0] : '';
-    const trailerImageElement = document.getElementById('selected-trailer-image');
+    const trailerImageElement = document.getElementById('selected-trailer-image') as HTMLImageElement;
     const selectedTrailerDiv = document.getElementById('selected-trailer') as HTMLDivElement;
     const warningMessageElement = document.getElementById('trailer-warning-message') as HTMLDivElement;
 
@@ -394,25 +394,25 @@ const selectedTrailerData = trailers.find(trailer => trailer.slug === selectedTr
   // save and retrieve generic formdata from localstorage
   const getFormData = () => {
     const store = Object.create(null)
-    store.trailer = get('trailerSelection')?.value;
-    store.trailerLabel = getTrailerById(get('trailerSelection').value)?.title;
-    store.startDate = get('startDate')?.value;
-    store.endDate = get('endDate')?.value;
-    store.startTime = get('startTime')?.value;
-    store.endTime = get('endTime')?.value;
-    store.eventType = get('eventType')?.value;
-    store.eventTypeLabel = getLabelByValue(get('eventType')?.value);
-    store.location = get('location')?.value;
-    store.expectedGuests = get('expectedGuests')?.value;
-    store.cleaning = get('cleaning')?.checked ? true : false;
-    store.watertank = get('watertank')?.checked ? true : false;
-    store.generator = get('generator')?.checked ? true : false;
+    store.trailer = (get('trailerSelection') as HTMLInputElement)?.value;
+    store.trailerLabel = (getTrailerById((get('trailerSelection') as HTMLInputElement)?.value)?.title);
+    store.startDate = (get('startDate') as HTMLInputElement)?.value;
+    store.endDate = (get('endDate') as HTMLInputElement)?.value;
+    store.startTime = (get('startTime') as HTMLInputElement)?.value;
+    store.endTime = (get('endTime') as HTMLInputElement)?.value;
+    store.eventType = (get('eventType') as HTMLInputElement)?.value;
+    store.eventTypeLabel = (getLabelByValue((get('eventType') as HTMLInputElement)?.value));
+    store.location = (get('location') as HTMLInputElement)?.value;
+    store.expectedGuests = (get('expectedGuests') as HTMLInputElement)?.value;
+    store.cleaning = (get('cleaning') as HTMLInputElement)?.checked ? true : false;
+    store.watertank = (get('watertank') as HTMLInputElement)?.checked ? true : false;
+    store.generator = (get('generator') as HTMLInputElement)?.checked ? true : false;
 
-    store.firstName = get('firstName')?.value;
-    store.lastName = get('lastName')?.value;
-    store.email = get('email')?.value;
-    store.phone = get('phone')?.value;
-    store.comments = get('comments')?.value;
+    store.firstName = (get('firstName') as HTMLInputElement)?.value;
+    store.lastName = (get('lastName') as HTMLInputElement)?.value;
+    store.email = (get('email') as HTMLInputElement)?.value;
+    store.phone = (get('phone') as HTMLInputElement)?.value;
+    store.comments = (get('comments') as HTMLInputElement)?.value;
     return store;
   }
 

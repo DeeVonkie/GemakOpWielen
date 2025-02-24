@@ -146,7 +146,7 @@ if (!trailer) {
   document.addEventListener('DOMContentLoaded', () => {
     const viewMoreButton = document.getElementById('view-more-images');
     const imageViewerModal = document.getElementById('image-viewer-modal');
-    const imageViewerImage = document.getElementById('image-viewer-image');
+    const imageViewerImage = document.getElementById('image-viewer-image') as HTMLImageElement;
     const closeImageViewerButton = document.getElementById('close-image-viewer');
     const prevImageButton = document.getElementById('prev-image');
     const nextImageButton = document.getElementById('next-image');

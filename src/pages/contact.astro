@@ -156,10 +156,10 @@ import Layout from '../layouts/Layout.astro';
   // save and retrieve generic formdata from localstorage
   const getFormData = () => {
     const store = Object.create(null)
-    store.name = get('name')?.value
-    store.email = get('email')?.value
-    store.phone = get('phone')?.value
-    store.message = get('message')?.value
+    store.name = (get('name') as HTMLInputElement)?.value
+    store.email = (get('email') as HTMLInputElement)?.value
+    store.phone = (get('phone') as HTMLInputElement)?.value
+    store.message = (get('message') as HTMLInputElement)?.value
     return store
   }
 
