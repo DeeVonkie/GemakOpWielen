@@ -19,7 +19,7 @@ export const bookingFormSchema = z.object({
     expectedGuests: z.string().min(1, 'Vul het aantal verwachte gasten in.'),
     location: z.string().min(2, 'Vul een locatie in.'),
     cleaning: z.boolean(),
-    watertank: z.boolean(),
+    septictank: z.boolean(),
     generator: z.boolean(),
     firstName: z.string().min(2, 'Vul uw voornaam in.'),
     lastName: z.string().min(2, 'Vul uw achternaam in.'),

@@ -51,7 +51,7 @@ export function getContactEmailTemplate(data: ContactFormData): string {
 export function getBookingEmailTemplate(data: BookingFormData): string {
     const extraServices = [
         data.cleaning && 'Schoonmaakservice',
-        data.watertank && 'Extra Watertank',
+        data.septictank && 'Septictank',
         data.generator && 'Stroomaggregaat',
     ].filter(Boolean).join(', ');
 

@@ -205,7 +205,7 @@ const selectedTrailerData = trailers.find(trailer => trailer.slug === selectedTr
             </div>
 
             <div>
-              <label class="text-base font-medium text-gray-900">Extra Services</label>
+              <label class="text-base font-medium text-gray-900">Extra services</label>
               <div class="mt-4 space-y-4">
                 <div class="flex items-start">
                   <div class="flex items-center h-5">
@@ -218,10 +218,10 @@ const selectedTrailerData = trailers.find(trailer => trailer.slug === selectedTr
                   </div>
                   <div class="ml-3 text-sm">
                     <label for="cleaning" class="font-medium text-gray-700">Schoonmaakservice</label>
-                    <p class="text-gray-500">Dagelijkse schoonmaak en bijvullen van supplies</p>
+                    <p class="text-gray-500">Extra tussentijdse schoonmaak van de toiletwagen</p>
                   </div>
                 </div>
-                <div class="flex items-start">
+                <!-- <div class="flex items-start">
                   <div class="flex items-center h-5">
                     <input
                         id="watertank"
@@ -233,6 +233,20 @@ const selectedTrailerData = trailers.find(trailer => trailer.slug === selectedTr
                   <div class="ml-3 text-sm">
                     <label for="watertank" class="font-medium text-gray-700">Extra Watertank</label>
                     <p class="text-gray-500">Voor locaties zonder wateraansluiting</p>
+                  </div>
+                </div> -->
+                <div class="flex items-start">
+                  <div class="flex items-center h-5">
+                    <input
+                        id="septictank"
+                        name="septictank"
+                        type="checkbox"
+                        class="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                    />
+                  </div>
+                  <div class="ml-3 text-sm">
+                    <label for="watertank" class="font-medium text-gray-700">Septictank</label>
+                    <p class="text-gray-500">Voor locaties zonder afvoermogelijkheid</p>
                   </div>
                 </div>
                 <div class="flex items-start">
@@ -405,7 +419,7 @@ const selectedTrailerData = trailers.find(trailer => trailer.slug === selectedTr
     store.location = (get('location') as HTMLInputElement)?.value;
     store.expectedGuests = (get('expectedGuests') as HTMLInputElement)?.value;
     store.cleaning = (get('cleaning') as HTMLInputElement)?.checked ? true : false;
-    store.watertank = (get('watertank') as HTMLInputElement)?.checked ? true : false;
+    store.septictank = (get('septictank') as HTMLInputElement)?.checked ? true : false;
     store.generator = (get('generator') as HTMLInputElement)?.checked ? true : false;
 
     store.firstName = (get('firstName') as HTMLInputElement)?.value;

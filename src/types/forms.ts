@@ -17,7 +17,7 @@ export interface BookingFormData {
     expectedGuests: string;
     location: string;
     cleaning: boolean;
-    watertank: boolean;
+    septictank: boolean;
     generator: boolean;
     firstName: string;
     lastName: string;
