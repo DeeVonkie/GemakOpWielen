@@ -4,6 +4,7 @@ interface Props {
     day: number;
     weekend: number;
     week: number;
+    btw: string;
   };
 }
 
@@ -16,17 +17,17 @@ const { pricing } = Astro.props;
     <div class="text-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200">
       <p class="text-sm text-gray-600">Per dag</p>
       <p class="mt-1 text-2xl font-bold text-primary-700">€{pricing.day}</p>
-      <p class="text-xs text-gray-500">excl. BTW</p>
+      <p class="text-xs text-gray-500">{pricing.btw} BTW</p>
     </div>
     <div class="text-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200">
       <p class="text-sm text-gray-600">Per weekend</p>
       <p class="mt-1 text-2xl font-bold text-primary-700">€{pricing.weekend}</p>
-      <p class="text-xs text-gray-500">excl. BTW</p>
+      <p class="text-xs text-gray-500">{pricing.btw} BTW</p>
     </div>
     <div class="text-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200">
       <p class="text-sm text-gray-600">Per week</p>
       <p class="mt-1 text-2xl font-bold text-primary-700">€{pricing.week}</p>
-      <p class="text-xs text-gray-500">excl. BTW</p>
+      <p class="text-xs text-gray-500">{pricing.btw} BTW</p>
     </div>
   </div>
 </div>

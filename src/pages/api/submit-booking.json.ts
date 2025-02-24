@@ -5,13 +5,15 @@ import { ZodError } from 'zod';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const data = await request.json();
+    const rawBody = await request.text();
+    if (!rawBody) {
+        throw new Error('Request body is empty');
+    }
+
+    const data = JSON.parse(rawBody);
 
     // Validate the form data
-    const validatedData = bookingFormSchema.parse({
-      ...data,
-      expectedGuests: parseInt(data.expectedGuests)
-    });
+    const validatedData = bookingFormSchema.parse(data);
 
     // Send the email
     await sendBookingEmail(validatedData);
@@ -19,7 +21,7 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(
         JSON.stringify({
           success: true,
-          message: 'Boeking succesvol verzonden'
+          message: 'Boekingsaanvraag succesvol verzonden'
         }),
         {
           status: 200,
@@ -44,19 +46,20 @@ export const POST: APIRoute = async ({ request }) => {
             }
           }
       );
-    }
+    } else {
 
-    return new Response(
-        JSON.stringify({
-          success: false,
-          error: 'Er is een fout opgetreden bij het versturen van de boeking'
-        }),
-        {
-          status: 500,
-          headers: {
-            'Content-Type': 'application/json'
+      return new Response(
+          JSON.stringify({
+            success: false,
+            error: 'Er is een netwerkfout opgetreden, neem contact op via info@gemakopwielen.nl'
+          }),
+          {
+            status: 500,
+            headers: {
+              'Content-Type': 'application/json'
+            }
           }
-        }
-    );
+      );
+    }
   }
 };

@@ -1,4 +1,6 @@
 ---
+import { contactDetails } from '../data/config';
+
 const currentYear = new Date().getFullYear();
 ---
 
@@ -9,19 +11,19 @@ const currentYear = new Date().getFullYear();
         <h3 class="text-sm font-semibold text-gray-600 tracking-wider uppercase">Contact</h3>
         <ul class="mt-4 space-y-4">
           <li>
-            <a href="tel:+31681528159" class="text-base text-gray-500 hover:text-gray-900">
-              +31 6 81 52 81 59
+            <a href=`tel:${contactDetails.phone.href}` class="text-base text-gray-500 hover:text-gray-900">
+              {contactDetails.phone.label}
             </a>
           </li>
           <li>
-            <a href="mailto:info@gemakopwielen.nl" class="text-base text-gray-500 hover:text-gray-900">
-              info@gemakopwielen.nl
+            <a href=`mailto:${contactDetails.email.href}` class="text-base text-gray-500 hover:text-gray-900">
+              {contactDetails.email.label}
             </a>
           </li>
           <li>
-            <p class="text-base text-gray-500">KvK: 93012322</p>
-            <p class="text-base text-gray-500">BTW-ID: NL004997457B17</p>
-            <p class="text-base text-gray-500">IBAN: NL79 KNAB 0775 7348 37</p>
+            <p class="text-base text-gray-500">KvK: {contactDetails.kvk}</p>
+            <p class="text-base text-gray-500">BTW-ID: {contactDetails.btw}</p>
+            <p class="text-base text-gray-500">IBAN: {contactDetails.iban}</p>
           </li>
         </ul>
       </div>
@@ -29,8 +31,8 @@ const currentYear = new Date().getFullYear();
         <h3 class="text-sm font-semibold text-gray-600 tracking-wider uppercase">Navigatie</h3>
         <ul class="mt-4 space-y-4">
           <li>
-            <a href="/trailers" class="text-base text-gray-500 hover:text-gray-900">
-              Trailers
+            <a href="/toiletwagens" class="text-base text-gray-500 hover:text-gray-900">
+              Toiletwagens
             </a>
           </li>
           <li>
@@ -49,14 +51,14 @@ const currentYear = new Date().getFullYear();
         <h3 class="text-sm font-semibold text-gray-600 tracking-wider uppercase">Locatie</h3>
         <div class="mt-4 space-y-4 text-base text-gray-500">
           <p>
-            Roggenplaat 63<br />
-            4301 WZ Zierikzee
+            {contactDetails.address.street}<br />
+            {contactDetails.address.postalCode} {contactDetails.address.city}
           </p>
           <div>
             <p class="font-medium">Werkplaats:</p>
             <p>
-              Industrieweg 43<br />
-              4301 RS Zierikzee
+              {contactDetails.visitAdress.street}<br />
+              {contactDetails.visitAdress.postalCode} {contactDetails.visitAdress.city}
             </p>
           </div>
         </div>

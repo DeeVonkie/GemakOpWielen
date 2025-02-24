@@ -7,10 +7,14 @@ export interface ContactFormData {
 
 export interface BookingFormData {
     trailer: string;
+    trailerLabel: string;
     startDate: string;
     endDate: string;
+    startTime: string;
+    endTime: string;
     eventType: string;
-    expectedGuests: number;
+    eventTypeLabel: string;
+    expectedGuests: string;
     location: string;
     cleaning: boolean;
     watertank: boolean;

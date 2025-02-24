@@ -6,14 +6,28 @@ export function getContactEmailTemplate(data: ContactFormData): string {
     <html>
     <head>
       <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; padding: 40px;}
         h1 { color: #16409A; margin-bottom: 20px; }
-        .section { background: #f8f9fa; padding: 20px; margin-bottom: 20px; border-radius: 5px; }
+        h2 { color: #16409A; margin-bottom: 15px; }
+        .section { background: #f8f9fa; padding: 25px; margin-bottom: 20px; border-radius: 10px; }
         strong { color: #16409A; }
+        .button {
+          display: inline-block;
+          padding: 10px 20px;
+          font-size: 16px;
+          color: #fff;
+          background-color: #16409A;
+          border-radius: 5px;
+          text-decoration: none;
+        }
+        .button:hover {
+          background-color: #0d2a6d;
+        }
       </style>
     </head>
     <body>
-      <h1>Nieuw Contactformulier Bericht</h1>
+      <h1><strong>Nieuwe contactaanvraag via de website</strong> </h1>
+      <p>Er is een nieuw contactformulier ingediend via de website van Gemak op Wielen. Reageer via de onderstaande knop.</p>
       
       <div class="section">
         <p><strong>Naam:</strong> ${data.name}</p>
@@ -24,6 +38,10 @@ export function getContactEmailTemplate(data: ContactFormData): string {
       <div class="section">
         <h2>Bericht:</h2>
         <p>${data.message}</p>
+      </div>
+
+      <div style="text-align: center; margin-top: 30px;">
+        <a href="mailto:${data.email}" class="button">Reageer op dit bericht</a>
       </div>
     </body>
     </html>
@@ -37,27 +55,43 @@ export function getBookingEmailTemplate(data: BookingFormData): string {
         data.generator && 'Stroomaggregaat',
     ].filter(Boolean).join(', ');
 
+    data.startDate = new Date(data.startDate).toLocaleDateString('nl-NL');
+    data.endDate = new Date(data.endDate).toLocaleDateString('nl-NL');
+
     return `
     <!DOCTYPE html>
     <html>
     <head>
       <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; padding: 40px;}
         h1 { color: #16409A; margin-bottom: 20px; }
-        h2 { color: #16409A; margin-top: 30px; margin-bottom: 15px; }
-        .section { background: #f8f9fa; padding: 20px; margin-bottom: 20px; border-radius: 5px; }
+        h2 { color: #16409A; margin-bottom: 15px; }
+        .section { background: #f8f9fa; padding: 25px; margin-bottom: 20px; border-radius: 10px; }
         strong { color: #16409A; }
+        .button {
+          display: inline-block;
+          padding: 10px 20px;
+          font-size: 16px;
+          color: #fff;
+          background-color: #16409A;
+          border-radius: 5px;
+          text-decoration: none;
+        }
+        .button:hover {
+          background-color: #0d2a6d;
+        }
       </style>
     </head>
     <body>
-      <h1>Nieuwe Boekingsaanvraag</h1>
+      <h1><strong>Nieuwe Boekingsaanvraag</strong></h1>
+      <p>Er is een nieuwe boekingsaanvraag ingediend via de website van Gemak op Wielen. Reageer via de onderstaande knop.</p>
       
       <div class="section">
-        <h2>Evenement Details</h2>
-        <p><strong>Trailer:</strong> ${data.trailer}</p>
-        <p><strong>Startdatum:</strong> ${data.startDate}</p>
-        <p><strong>Einddatum:</strong> ${data.endDate}</p>
-        <p><strong>Type Evenement:</strong> ${data.eventType}</p>
+        <h2>Aanvraag Details</h2>
+        <p><strong>Trailer:</strong> ${data.trailerLabel}</p>
+        <p><strong>Datum:</strong> ${data.startDate} - ${data.endDate}</p>
+        <p><strong>Tijd:</strong> ${data.startTime} - ${data.endTime}</p>
+        <p><strong>Type Evenement:</strong> ${data.eventTypeLabel}</p>
         <p><strong>Verwacht Aantal Gasten:</strong> ${data.expectedGuests}</p>
         <p><strong>Locatie:</strong> ${data.location}</p>
       </div>
@@ -80,6 +114,10 @@ export function getBookingEmailTemplate(data: BookingFormData): string {
           <p>${data.comments}</p>
         </div>
       ` : ''}
+
+      <div style="text-align: center; margin-top: 30px;">
+        <a href="mailto:${data.email}" class="button">Reageer op dit bericht</a>
+      </div>
     </body>
     </html>
   `;

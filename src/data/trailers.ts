@@ -2,6 +2,7 @@ export interface Trailer {
   id: string;
   title: string;
   description: string;
+  finished: boolean;
   features: string[];
   specifications: {
     toilets: number;
@@ -16,6 +17,7 @@ export interface Trailer {
     day: number;
     weekend: number;
     week: number;
+    btw: string;
   };
   images: string[];
   slug: string;
@@ -26,16 +28,18 @@ export const trailers: Trailer[] = [
     id: 'luxe-4p',
     title: 'Luxe 4-persoons',
     description:
-      'Onze eerste toiletwagen met hoogwaardige afwerking en comfort voor allerlei evenementen. Perfect voor kleinere bijeenkomsten waar comfort en luxe belangrijk zijn.',
+      'Onze handgebouwde toiletwagen met hoogwaardige afwerking en comfort voor allerlei evenementen. Perfect voor bijeenkomsten waar comfort en luxe belangrijk zijn.',
     features: [
       '4 individuele toiletten met wastafel',
+      'Standaard geleverd met 16 rollen toiletpapier',
       'Ruime hokjes voor ieders gemak',
-      'Centrale verwarming voor optimaal comfort',
-      'Sfeervolle LED-verlichting',
-      'Luxe interieur met hoogwaardige afwerking',
+      // 'Centrale verwarming voor optimaal comfort',
+      'Ingebouwde muziekinstallatie',
+      'Sfeervolle LED-spots',
       'Toevoer via een tuinslang',
       'Afvoer via het riool'
     ],
+    finished: false,
     specifications: {
       toilets: 4,
       sinks: 4,
@@ -46,15 +50,22 @@ export const trailers: Trailer[] = [
       water: '3/4" aansluiting',
     },
     pricing: {
-      day: 350,
-      weekend: 575,
-      week: 1750,
+      day: 295,
+      weekend: 695,
+      week: 495,
+      btw: 'incl.',
     },
-    images: ['/images/in-aanbouw.png'],
+    images: [
+      '/images/luxe-4p-wip.jpg',
+      '/images/in-aanbouw.png',
+      '/images/luxe-4p-wip.jpg',
+      '/images/luxe-4p-wip.jpg',
+      '/images/in-aanbouw.png'
+    ],
     slug: 'luxe-4p',
   },
 ];
 
-export function getTrailerBySlug(slug: string): Trailer | undefined {
-  return trailers.find((trailer) => trailer.slug === slug);
+export function getTrailerById(id: string): Trailer | undefined {
+  return trailers.find((trailer) => trailer.id === id);
 }

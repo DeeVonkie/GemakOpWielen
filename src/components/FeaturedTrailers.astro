@@ -1,21 +1,22 @@
 ---
 import TrailerCard from './TrailerCard.astro';
 import SingleFeaturedTrailer from './SingleFeaturedTrailer.astro';
+import links from './Header.astro';
 import { trailers } from '../data/trailers';
 
 // Select the first 3 trailers as featured
 const featuredTrailers = trailers.slice(0, 3);
 
 const getTitle = (count: number) => {
-  if (count === 1) return "Onze Luxe Toiletwagen";
-  if (count === 2) return "Onze Toiletwagens";
-  return "Onze Populaire Toiletwagens";
+  if (count === 1) return "Onze luxe toiletwagen";
+  if (count === 2) return "Onze toiletwagens";
+  return "Onze populairste toiletwagens";
 };
 
 const getDescription = (count: number) => {
-  if (count === 1) return "Ontdek onze hoogwaardige mobiele toiletwagen";
-  if (count === 2) return "Bekijk onze selectie van mobiele toiletwagens";
-  return "Ontdek onze meest gevraagde mobiele toiletwagens";
+  if (count === 1) return "Ontdek onze hoogwaardige mobiele toiletwagen.";
+  if (count === 2) return "Ondek ons aanbod van mobiele toiletwagens.";
+  return "Ontdek onze meest geboekte mobiele toiletwagens.";
 };
 ---
 
@@ -59,11 +60,11 @@ const getDescription = (count: number) => {
                     ))}
                   </ul>
                   <div class="mt-6 flex space-x-3">
-                    <a href={`/trailers/${trailer.slug}`} class="flex-1 text-center px-4 py-2 bg-primary-700 text-white rounded-md hover:bg-primary-800">
-                      Meer Info
+                    <a href={`/toiletwagens/${trailer.slug}`} class="flex-1 text-center px-4 py-2 bg-primary-700 text-white rounded-md hover:bg-primary-800">
+                      Meer info
                     </a>
                     <a href={`/boeken?trailer=${trailer.slug}`} class="flex-1 text-center px-4 py-2 border border-primary-700 text-primary-700 rounded-md hover:bg-primary-50">
-                      Direct Boeken
+                      Direct boeken
                     </a>
                   </div>
                 </div>
