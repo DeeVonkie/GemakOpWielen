@@ -11,12 +11,12 @@ const currentYear = new Date().getFullYear();
         <h3 class="text-sm font-semibold text-gray-600 tracking-wider uppercase">Contact</h3>
         <ul class="mt-4 space-y-4">
           <li>
-            <a href=`tel:${contactDetails.phone.href}` class="text-base text-gray-500 hover:text-gray-900">
+            <a href=`${contactDetails.phone.href}` class="text-base text-gray-500 hover:text-gray-900">
               {contactDetails.phone.label}
             </a>
           </li>
           <li>
-            <a href=`mailto:${contactDetails.email.href}` class="text-base text-gray-500 hover:text-gray-900">
+            <a href=`${contactDetails.email.href}` class="text-base text-gray-500 hover:text-gray-900">
               {contactDetails.email.label}
             </a>
           </li>

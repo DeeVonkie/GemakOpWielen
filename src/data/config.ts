@@ -2,7 +2,7 @@ export const contactDetails = {
     website: 'https://www.gemakopwielen.nl',
     phone: {
         label: '+31 6 81 52 81 59',
-        href: '+31681528159',
+        href: 'tel:+31681528159',
     },
     email: {
         label: 'info@gemakopwielen.nl',
@@ -21,6 +21,40 @@ export const contactDetails = {
     kvk: '93012322',
     btw: 'NL004997457B17',
     iban: 'NL79 KNAB 0775 7348 37',
+
+    jorgos: {
+      function: 'Mede-eigenaar & Administratie',
+      email: {
+        label: 'jorgos@gemakopwielen.nl',
+        href: 'mailto:jorgos@gemakopwielen.nl',
+      },
+      phone: {
+        label: '+31 6 81 52 81 59',
+        href: 'tel:+31681528159',
+      }
+    },
+    tom: {
+      function: 'Mede-eigenaar & Operations',
+      email: {
+        label: 'tom@gemakopwielen.nl',
+        href: 'mailto:tom@gemakopwielen.nl',
+      },
+      phone: {
+        label: '+31 6 12 17 87 93',
+        href: 'tel:+31612178793',
+      }
+    },
+    demian: {
+      function: 'Mede-eigenaar & Marketing',
+      email: {
+        label: 'demian@gemakopwielen.nl',
+        href: 'mailto:demian@gemakopwielen.nl',
+      },
+      phone: {
+        label: '+31 6 83 99 04 61',
+        href: 'tel:+3183990461',
+      }
+    },
 }
 
 export const frequentlyAskedQuestions = [
