@@ -431,10 +431,10 @@ const selectedTrailerData = trailers.find(trailer => trailer.slug === selectedTr
     try {
       const response = await fetch('/api/submit-booking.json', {
         method: 'POST',
+        body: JSON.stringify(formData),
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
