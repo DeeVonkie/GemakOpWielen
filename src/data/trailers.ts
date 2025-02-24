@@ -51,8 +51,8 @@ export const trailers: Trailer[] = [
     },
     pricing: {
       day: 295,
-      weekend: 695,
-      week: 495,
+      weekend: 495,
+      week: 695,
       btw: 'incl.',
     },
     images: [
