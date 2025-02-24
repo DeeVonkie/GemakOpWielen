@@ -454,7 +454,7 @@ const selectedTrailerData = trailers.find(trailer => trailer.slug === selectedTr
       formDiv.reset();
 
     } catch (error) {
-      console.error('Error:', error);
+      console.log('Error:', error);
       errorDiv.textContent = 'Er is een netwerkfout opgetreden, neem contact op via info@gemakopwielen.nl';
       errorDiv.classList.remove('hidden');
       window.scrollTo(0, 0);
