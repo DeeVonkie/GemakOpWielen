@@ -431,10 +431,7 @@ const selectedTrailerData = trailers.find(trailer => trailer.slug === selectedTr
     try {
       const response = await fetch('/api/submit-booking.json', {
         method: 'POST',
-        body: JSON.stringify(formData),
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        body: JSON.stringify(formData)
       });
 
       if (!response.ok) {
@@ -454,7 +451,7 @@ const selectedTrailerData = trailers.find(trailer => trailer.slug === selectedTr
       formDiv.reset();
 
     } catch (error) {
-      console.log('Error:', error);
+      console.error('Error:', error);
       errorDiv.textContent = 'Er is een netwerkfout opgetreden, neem contact op via info@gemakopwielen.nl';
       errorDiv.classList.remove('hidden');
       window.scrollTo(0, 0);

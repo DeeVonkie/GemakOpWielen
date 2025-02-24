@@ -3,7 +3,7 @@ import { bookingFormSchema } from '../../utils/validation';
 import { sendBookingEmail } from '../../utils/mailer';
 import { ZodError } from 'zod';
 
-export const POST: APIRoute = async ({ request }) => {
+export async function POST({ request }) {
   try {
     const rawBody = await request.text();
     if (!rawBody) {

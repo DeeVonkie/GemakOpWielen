@@ -1,10 +1,9 @@
 // filepath: /Users/demianvonk/Documents/GemakOpWielen/src/pages/api/submit-contact.ts
-import type { APIRoute } from 'astro';
 import { contactFormSchema } from '../../utils/validation';
 import { sendContactEmail } from '../../utils/mailer';
 import { ZodError } from 'zod';
 
-export const POST: APIRoute = async ({ request }) => {
+export async function POST({ request }) {
     try {
         const rawBody = await request.text();
         if (!rawBody) {

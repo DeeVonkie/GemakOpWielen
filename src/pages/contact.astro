@@ -179,10 +179,7 @@ import Layout from '../layouts/Layout.astro';
     try {
       const response = await fetch('/api/submit-contact.json', {
         method: 'POST',
-        body: JSON.stringify(formData),
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        body: JSON.stringify(formData)
       });
 
       if (!response.ok) {
@@ -197,10 +194,11 @@ import Layout from '../layouts/Layout.astro';
       const data = await response.json();
       successDiv.textContent = 'Bedankt voor uw bericht. We nemen zo spoedig mogelijk contact met u op.';
       successDiv.classList.remove('hidden');
+      errorDiv.classList.add('hidden');
       formDiv.reset();
 
     } catch (err) {
-      console.log('Error:', err);
+      console.error('Error:', err);
       errorDiv.textContent = 'Er is een netwerkfout opgetreden, neem contact op via info@gemakopwielen.nl';
       errorDiv.classList.remove('hidden');
     }
