@@ -5,10 +5,12 @@ import node from "@astrojs/node";
 
 import cloudflare from '@astrojs/cloudflare';
 
+import netlify from '@astrojs/netlify';
+
 export default defineConfig({
   integrations: [tailwind(), alpinejs()],
   output: 'server',
-  adapter: cloudflare(),
+  adapter: netlify(),
   env: {
     schema: {
       SMTP_HOST: envField.string({

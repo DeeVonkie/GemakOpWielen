@@ -1,4 +1,3 @@
-import type { APIRoute } from 'astro';
 import { bookingFormSchema } from '../../utils/validation';
 import { sendBookingEmail } from '../../utils/mailer';
 import { ZodError } from 'zod';
