@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@astrojs/alpinejs": "^0.4.3",
+    "@astrojs/cloudflare": "^12.2.1",
     "@astrojs/node": "^9.1.0",
     "@astrojs/tailwind": "^6.0.0",
     "@types/nodemailer": "^6.4.14",

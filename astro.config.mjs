@@ -3,12 +3,12 @@ import tailwind from '@astrojs/tailwind';
 import alpinejs from "@astrojs/alpinejs";
 import node from "@astrojs/node";
 
+import cloudflare from '@astrojs/cloudflare';
+
 export default defineConfig({
   integrations: [tailwind(), alpinejs()],
   output: 'server',
-  adapter: node({
-    mode: 'standalone'
-  }),
+  adapter: cloudflare(),
   env: {
     schema: {
       SMTP_HOST: envField.string({
