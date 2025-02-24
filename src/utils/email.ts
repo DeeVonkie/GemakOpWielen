@@ -20,12 +20,12 @@ interface BookingData {
 
 export async function sendBookingEmail(data: BookingData, trailer: Trailer) {
   const transporter = nodemailer.createTransport({
-    host: import.meta.env.SMTP_HOST,
-    port: parseInt(import.meta.env.SMTP_PORT || '587'),
-    secure: import.meta.env.SMTP_SECURE === 'true',
+    host: import.meta.env.SMTP_HOST ?? process.env.SMTP_HOST,
+    port: parseInt((import.meta.env.SMTP_PORT ?? process.env.SMTP_PORT) || '587'),
+    secure: import.meta.env.SMTP_SECURE ?? process.env.SMTP_SECURE === 'true',
     auth: {
-      user: import.meta.env.SMTP_USER,
-      pass: import.meta.env.SMTP_PASSWORD,
+      user: import.meta.env.SMTP_USER ?? process.env.SMTP_USER,
+      pass: import.meta.env.SMTP_PASSWORD ?? process.env.SMTP_PASSWORD,
     },
   });
 
