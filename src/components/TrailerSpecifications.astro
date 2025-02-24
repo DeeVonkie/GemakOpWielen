@@ -1,7 +1,10 @@
 ---
 interface Props {
   specifications: {
-    toilets: number;
+    toilets: {
+      men: number;
+      women: number;
+    };
     sinks: number;
     length: number;
     width: number;
@@ -22,17 +25,11 @@ const { specifications } = Astro.props;
     <dl>
       <div class="bg-gray-50 px-6 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-8">
         <dt class="text-sm font-medium text-gray-500">Toiletten</dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{specifications.toilets}</dd>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{specifications.toilets.men} heren & {specifications.toilets.women} dames</dd>
       </div>
       <div class="bg-white px-6 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-8">
         <dt class="text-sm font-medium text-gray-500">Wastafels</dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{specifications.sinks}</dd>
-      </div>
-      <div class="bg-gray-50 px-6 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-8">
-        <dt class="text-sm font-medium text-gray-500">Afmetingen</dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          {specifications.length}m x {specifications.width}m x {specifications.height}m
-        </dd>
       </div>
       <div class="bg-white px-6 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-8">
         <dt class="text-sm font-medium text-gray-500">Stroomvoorziening</dt>
@@ -41,6 +38,12 @@ const { specifications } = Astro.props;
       <div class="bg-gray-50 px-6 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-8">
         <dt class="text-sm font-medium text-gray-500">Wateraansluiting</dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{specifications.water}</dd>
+      </div>
+      <div class="bg-gray-50 px-6 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-8">
+        <dt class="text-sm font-medium text-gray-500">Afmetingen</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          {specifications.length}m x {specifications.width}m x {specifications.height}m
+        </dd>
       </div>
     </dl>
   </div>

@@ -5,7 +5,10 @@ export interface Trailer {
   finished: boolean;
   features: string[];
   specifications: {
-    toilets: number;
+    toilets: {
+      men: number;
+      women: number;
+    };
     sinks: number;
     length: number;
     width: number;
@@ -41,13 +44,16 @@ export const trailers: Trailer[] = [
     ],
     finished: false,
     specifications: {
-      toilets: 4,
+      toilets: {
+        men: 2,
+        women: 2,
+      },
       sinks: 4,
       length: 4.2,
       width: 2.2,
       height: 3.0,
-      power: '230V - 16A',
-      water: '3/4" aansluiting',
+      power: '230V - 16A (normaal stopcontact)',
+      water: '3/4" aansluiting (tuinslang)',
     },
     pricing: {
       day: 295,
