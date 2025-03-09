@@ -75,6 +75,10 @@ export const frequentlyAskedQuestions = [
       answer: "De toiletwagen heeft een 230V - 16A stroomaansluiting. De kar kan op een normaal stopcontact aangesloten worden. Let wel op dat er genoeg stroom beschikbaar is op de groep. Bij geen stroomvoorziening kunnen wij een aggregaat verzorgen (meerprijs)."
     },
     {
+      question: "Hoe werkt de muziekinstallatie?",
+      answer: "De toiletwagen is voorzien van een muziekinstallatie. Deze kan via Bluetooth verbonden worden met uw device, maar is ook direct te verbinden via tulp, 3.5mm jack of XLR. Zo kunt u uw eigen muziek doorkoppelen naar onze toiletwagen."
+    },
+    {
       question: "Is er schoonmaakservice beschikbaar?",
       answer: "Ja, wij zorgen dat de toiletwagen na uw boeking wordt schoongemaakt. Dit zit in de totaalprijs inbegrepen. Bij retour verwachten wij wel dat de toiletwagen in dezelfde staat wordt opgeleverd als bij levering. Wilt u de toiletwagen tussentijds schoon laten maken? Geef dit aan bij uw boeking, dan kijken we wat de mogelijkheden zijn."
     },
