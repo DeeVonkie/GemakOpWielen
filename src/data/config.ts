@@ -64,11 +64,11 @@ export const frequentlyAskedQuestions = [
     },
     {
       question: "Hoe werkt de wateraansluiting?",
-      answer: "De toiltwagen heeft een standaard 3/4\" wateraansluiting nodig. Dit is dus bijvoorbeeld een tuinslang, deze moet binnen 20 meter van de toiletwagen aanwezig zijn."
+      answer: "De toiltwagen heeft een standaard 3/4\" wateraansluiting nodig. Dit is dus een tuinslang aansluiting, deze moet binnen 20 meter van de toiletwagen aanwezig zijn."
     },
     {
         question: "Waar gaat het afvalwater naartoe?",
-        answer: "Doordat de toiletwagen voorzien is van een interne vermaalpomp, kan het afvalwater binnen 20 meter op het riool worden aangesloten. Geen rioolaansluiting in de buurt? Dan kunnen wij een septictank verzorgen (meerprijs)."
+        answer: "Doordat de toiletwagen voorzien is van een interne vermaalpomp, kan het afvalwater binnen 15 meter op het riool worden aangesloten. Het afvalwater loos je op een plaats waar dat mag. Vraag dit na bij de milieudienst van de lokale overheid. Afvalwater mag nooit bij hemelwater terechtkomen. Geen rioolaansluiting in de buurt? Dan kunnen wij een septictank verzorgen (meerprijs)."
       },
     {
       question: "Wat zijn de stroomvereisten?",
