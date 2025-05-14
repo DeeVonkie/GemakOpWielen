@@ -1,11 +1,12 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { contactDetails } from '../../data/config';
 // import { } from '../data/config';
 ---
 
 <Layout 
   title="Instructies | Elektriciteit"
-  description="Instructies voor het gebruikmaken de elektrische voorzieningen."
+  description="Instructies voor het gebruikmaken en bedienen van de elektrische voorzieningen."
 >
   <!-- Hero Section -->
   <div class="bg-white">
@@ -58,17 +59,17 @@ import Layout from '../../layouts/Layout.astro';
                         <p class="mt-2 text-gray-600">In de technische ruimte van de toiletwagen bevindt zich de groepenkast. Deze regelt de stroomvoorziening van de hele wagen.</p>
                         <p class="mt-3 text-gray-600">De groepenkast bevat (van links naar rechts):</p>
                             <ul class="mt-1">
-                                <li><u><a class="text-primary-700" href="#hoofdschakelaar">Hoofdschakelaar</a></u> - Hiermee zet u de volledige stroomvoorziening aan of uit. Te herkennen aan de langwerpige zwarte schakelaar.</li>
-                                <li><u><a class="text-primary-700" href="#verlichting">Verlichting</a></u> - Hiermee zet u de volledige stroomvoorziening aan of uit.</li>
-                                <li><u><a class="text-primary-700" href="#sanibroyeurs">Sanibroyeurs</a></u> 1 & 2 (toiletvermalers) - Hiermee zet u de volledige stroomvoorziening aan of uit.</li>
-                                <li><u><a class="text-primary-700" href="#sanibroyeurs">Sanibroyeurs</a></u> 3 & 4 (toiletvermalers) - Hiermee zet u de volledige stroomvoorziening aan of uit.</li>
-                                <li><u><a class="text-primary-700" href="#geluidsinstallatie">Stopcontact voor geluidsinstallatie</a></u>- Stroomaansluiting voor de geluidsinstallatie. Gebruik dit stopcontact <u>niet</u> voor eigen apparatuur.</li>
+                                <li><a class="text-primary-700 hover:underline" href="#hoofdschakelaar">Hoofdschakelaar</a> - Hiermee zet u de volledige stroomvoorziening aan of uit. Te herkennen aan de langwerpige zwarte schakelaar.</li>
+                                <li><a class="text-primary-700 hover:underline" href="#verlichting">Verlichting</a> - Hiermee zet u de volledige stroomvoorziening aan of uit.</li>
+                                <li><a class="text-primary-700 hover:underline" href="#sanibroyeurs">Sanibroyeurs</a> 1 & 2 (toiletvermalers) - Hiermee zet u de volledige stroomvoorziening aan of uit.</li>
+                                <li><a class="text-primary-700 hover:underline" href="#sanibroyeurs">Sanibroyeurs</a> 3 & 4 (toiletvermalers) - Hiermee zet u de volledige stroomvoorziening aan of uit.</li>
+                                <li><a class="text-primary-700 hover:underline" href="#geluidsinstallatie">Stopcontact voor geluidsinstallatie</a></u>- Stroomaansluiting voor de geluidsinstallatie. Gebruik dit stopcontact <u>niet</u> voor eigen apparatuur.</li>
                             </ul>
                     </div>
 
                     <div id="hoofdschakelaar" class="p-6">
                         <h3 class="text-xl font-bold text-gray-900">Hoofdschakelaar</h3>
-                        <p class="mt-2 text-gray-600">De hoofdschakelaar is de belangrijkste schakelaar in de groepenkast. Hiermee schakelt u de volledige stroomvoorziening van de toiletwagen aan of uit. Dit kan u bijvoorbeeld doen als er een lange periode géén gebruik wordt gemaakt van de toiletten.</p>
+                        <p class="mt-2 text-gray-600">De hoofdschakelaar is de belangrijkste schakelaar in de groepenkast. Hiermee schakelt u de volledige stroomvoorziening van de toiletwagen in of uit. Dit kan u bijvoorbeeld doen als er een lange periode géén gebruik wordt gemaakt van de toiletten.</p>
                         
                         <div class="mt-4">
                             <p class="mt-2 text-gray-600">Zet de hoofdschakelaar nooit uit zonder eerst de andere schakelaars en geluidsinstallatie handmatig uit te zetten. Dit voorkomt schade aan de speakers of geluidsinstallatie door onverwachte spanningspieken.</p>
@@ -84,7 +85,7 @@ import Layout from '../../layouts/Layout.astro';
                     <div id="sanibroyeurs" class="p-6">
                         <h3 class="text-xl font-bold text-gray-900">Sanibroyeurs (toiletvermalers)</h3>
                         <p class="mt-2 text-gray-600">Elke toilet is voorzien van een sanibroyeur die vaste stoffen en toiletpapier vermalen. Deze apparaten zijn aangesloten op vaste stopcontacten in de serviceruimtes.</p>
-                        <p class="mt-2 text-gray-600">Op de groepenkast zijn deze verdeeld over twee groepen. Groep 2 schakelt de sanibroyeurs, gelabeld met 1 & 2 in of uit. Groep 3 schakelt de sanibroyeurs, gelabeld met 3 & 4 in of uit.</p>
+                        <p class="mt-2 text-gray-600">Op de groepenkast zijn deze verdeeld over twee groepen. Groep 2 schakelt de sanibroyeurs, gelabeld met 1 & 2, in of uit. Groep 3 schakelt de sanibroyeurs, gelabeld met 3 & 4, in of uit.</p>
                         <p class="mt-2 text-gray-600">Gebruik <u>uitsluitend regulier toiletpapier</u>. Spoel geen vochtige doekjes, tampons of andere materialen door. Dit voorkomt verstoppingen en storingen.</p>
                         
                         <div class="mt-4">
@@ -111,7 +112,7 @@ import Layout from '../../layouts/Layout.astro';
                         Neem dan zo snel mogelijk contact op met uw contactpersoon bij Gemak op Wielen.</p>
                         </p>
                         <p class="mt-3 text-gray-600">📞 Telefoonnummer te vinden op de offerte.</p>
-                        <p class="text-gray-600">📧 <u><a href="mailto:info@gemakopwielen.nl">info@gemakopwielen.nl</a></u></p>
+                        <p class="text-gray-600">📧 <a class="text-primary-700 hover:underline" href=`${contactDetails.email.href}`>{contactDetails.email.label}</a></p>
                     </div>
                 </div>
             </div>

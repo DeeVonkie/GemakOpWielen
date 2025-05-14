@@ -34,7 +34,7 @@ const isActive = (href: string) => {
             class={`relative inline-flex items-center px-1 pt-1 text-sm font-medium group ${
               isActive(link.href)
                 ? 'text-primary-700'
-                : 'text-gray-700 hover:text-primary-700'
+                : 'text-gray-700 hover:text-primary-700 transition-colors duration-100'
             }`}
           >
             {link.text}
@@ -70,7 +70,7 @@ const isActive = (href: string) => {
             class={`block pl-3 pr-4 py-2 text-base font-medium border-l-4 ${
               isActive(link.href)
                 ? 'border-primary-700 text-primary-700 bg-primary-50'
-                : 'border-transparent text-gray-700 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-900'
+                : 'border-transparent text-gray-700 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-900 transition-colors duration-200'
             }`}
           >
             {link.text}

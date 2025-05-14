@@ -42,7 +42,7 @@ if (!trailer) {
           ))}
         </div>
         {trailer.images.length > 3 && (
-          <button id="view-more-images" class="mt-4 px-4 py-2 flex-1 text-center px-4 py-2 border border-primary-700 text-primary-700 rounded-md hover:bg-primary-50 self-start">
+          <button id="view-more-images" class="mt-4 px-4 py-2 flex-1 text-center px-4 py-2 border border-primary-700 text-primary-700 rounded-md hover:bg-primary-50 transition-colors duration-200 self-start">
             <strong>+</strong> Bekijk nog {trailer.images.length - 3 === 1 && (
               "1 foto's"
             )} {trailer.images.length - 3 > 1 && (
@@ -98,11 +98,11 @@ if (!trailer) {
         </div>
 
         <div class="mt-6 flex space-x-3">
-          <a href={`/boeken?trailer=${trailer.slug}`} class="flex-1 text-center px-4 py-2 bg-primary-700 text-white rounded-md hover:bg-primary-800">
-            Direct boeken
+          <a href={`/boeken?trailer=${trailer.slug}`} class="flex-1 text-center px-4 py-2 bg-primary-700 text-white rounded-md hover:bg-primary-800 transition-colors duration-200">
+            Direct Boeken
           </a>
-          <a href="/contact" class="flex-1 text-center px-4 py-2 border border-primary-700 text-primary-700 rounded-md hover:bg-primary-50">
-            Contact opnemen
+          <a href="/contact" class="flex-1 text-center px-4 py-2 border border-primary-700 text-primary-700 rounded-md hover:bg-primary-50 transition-colors duration-200">
+            Contact Opnemen
           </a>
         </div>
       </div>
@@ -118,15 +118,14 @@ if (!trailer) {
   <!-- Image Viewer Modal -->
   <div id="image-viewer-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden z-50 p-4">
     <div class="relative max-w-full w-full md:max-w-3xl mx-auto">
-      <button id="close-image-viewer" class="absolute top-2 right-2 text-white text-2xl">&times;</button>
       <div class="relative w-full flex items-center justify-center">
-        <button id="prev-image" class="absolute left-2 text-white text-2xl bg-primary-700 hover:bg-primary-800 rounded-full p-2">
+        <button id="prev-image" class="absolute left-2 text-white text-2xl bg-primary-700 hover:bg-primary-800 transition-colors duration-200 rounded-full p-2">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
         <img id="image-viewer-image" src="" alt="Image Viewer" class="max-w-full max-h-full rounded-lg mx-auto" />
-        <button id="next-image" class="absolute right-2 text-white text-2xl bg-primary-700 hover:bg-primary-800 rounded-full p-2">
+        <button id="next-image" class="absolute right-2 text-white text-2xl bg-primary-700 hover:bg-primary-800 transition-colors duration-200 rounded-full p-2">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
@@ -137,8 +136,15 @@ if (!trailer) {
 </Layout>
 
 <script>
+  // import { effect } from 'astro:schema';
   import { getTrailerById } from '../../data/trailers';
   import Hammer from 'hammerjs';
+
+  declare global {
+    interface Window {
+      openImageViewer: (index: number) => void;
+    }
+  }
 
   const slug = location.pathname.split('/').slice(1)[1];
   const trailer = getTrailerById(slug);
@@ -195,13 +201,21 @@ if (!trailer) {
       }
     });
 
-    imageViewerModal.addEventListener('keydown', (event) => {
-      if (event.key === 'ArrowRight') {
-        showNextImage();
-      } else if (event.key === 'ArrowLeft') {
-        showPrevImage();
-      } else if (event.key === 'Escape') {
-        closeImageViewer();
+    document.addEventListener('keydown', (event) => {
+      if (imageViewerModal.classList.contains('hidden')) { 
+        return;
+      } else {
+        if (event.key === 'ArrowRight') {
+          showNextImage();
+        } else if (event.key === 'ArrowLeft') {
+          showPrevImage();
+        } else if (event.key === 'Escape') {
+          closeImageViewer();
+        } else if (event.key === 'ArrowDown') {
+          event.preventDefault();
+        } else if (event.key === 'ArrowUp') {
+          event.preventDefault();
+        }
       }
     });
 

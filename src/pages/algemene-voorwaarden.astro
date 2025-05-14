@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { contactDetails } from '../data/config';
 // import { } from '../data/config';
 ---
 
@@ -298,7 +299,7 @@ import Layout from '../layouts/Layout.astro';
         <div class="mt-12">
             <p class="text-gray-600">
                 Versie 1.0 | 1 juni 2025<br>
-                Voor vragen of opmerkingen kunt u contact opnemen met Gemak op Wielen via <a href="mailto:info@gemakopwielen.nl" class="text-primary-700 hover:underline">info@gemakopwielen.nl</a>.
+                Voor vragen of opmerkingen kunt u contact opnemen met Gemak op Wielen via <a class="text-primary-700 hover:underline" href=`${contactDetails.email.href}`>{contactDetails.email.label}</a>.
             </p>
         </div>
     </div>

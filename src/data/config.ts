@@ -12,11 +12,13 @@ export const contactDetails = {
         street: 'Roggenplaat 63',
         postalCode: '4301 WZ',
         city: 'Zierikzee',
+        href: 'https://maps.app.goo.gl/Y6Y2mWEbcwP9dRWB6',
     },
     visitAdress: {
         street: 'Industrieweg 43',
         postalCode: '4301 RS',
         city: 'Zierikzee',
+        href: 'https://maps.app.goo.gl/F2GmWn68bfqdLFh68',
     },
     kvk: '93012322',
     btw: 'NL004997457B17',

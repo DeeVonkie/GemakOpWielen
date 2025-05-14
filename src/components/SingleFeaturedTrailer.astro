@@ -9,7 +9,7 @@ interface Props {
 const { trailer } = Astro.props;
 ---
 
-<div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:scale-[1.02]">
+<div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-300">
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
     <div class="relative h-[400px] lg:h-full">
       <img
@@ -30,15 +30,15 @@ const { trailer } = Astro.props;
       <div class="mt-8 flex flex-col sm:flex-row gap-4">
         <a
           href={`/toiletwagens/${trailer.slug}`}
-          class="flex-1 text-center px-6 py-3 bg-primary-700 text-white rounded-lg hover:bg-primary-800 transition-colors duration-200"
+          class="flex-1 text-center px-6 py-3 border border-transparent bg-primary-700 text-white rounded-lg hover:bg-primary-800 transition-colors duration-200"
         >
-          Meer info
+          Meer Informatie
         </a>
         <a
           href={`/boeken?trailer=${trailer.slug}`}
           class="flex-1 text-center px-6 py-3 border-2 border-primary-700 text-primary-700 rounded-lg hover:bg-primary-50 transition-colors duration-200"
         >
-          Direct boeken
+          Direct Boeken
         </a>
       </div>
     </div>

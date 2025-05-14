@@ -11,12 +11,12 @@ const currentYear = new Date().getFullYear();
         <h3 class="text-sm font-semibold text-gray-600 tracking-wider uppercase">Contact</h3>
         <ul class="mt-4 space-y-4">
           <li>
-            <a href=`${contactDetails.phone.href}` class="text-base text-gray-500 hover:text-gray-900">
+            <a href=`${contactDetails.phone.href}` class="text-base text-gray-500 hover:text-gray-900 transition-colors duration-200">
               {contactDetails.phone.label}
             </a>
           </li>
           <li>
-            <a href=`${contactDetails.email.href}` class="text-base text-gray-500 hover:text-gray-900">
+            <a href=`${contactDetails.email.href}` class="text-base text-gray-500 hover:text-gray-900 transition-colors duration-200">
               {contactDetails.email.label}
             </a>
           </li>
@@ -31,17 +31,22 @@ const currentYear = new Date().getFullYear();
         <h3 class="text-sm font-semibold text-gray-600 tracking-wider uppercase">Navigatie</h3>
         <ul class="mt-4 space-y-4">
           <li>
-            <a href="/toiletwagens" class="text-base text-gray-500 hover:text-gray-900">
+            <a href="/index" class="text-base text-gray-500 hover:text-gray-900 transition-colors duration-200">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="/toiletwagens" class="text-base text-gray-500 hover:text-gray-900 transition-colors duration-200">
               Toiletwagens
             </a>
           </li>
           <li>
-            <a href="/over-ons" class="text-base text-gray-500 hover:text-gray-900">
-              Over Ons
+            <a href="/over-ons" class="text-base text-gray-500 hover:text-gray-900 transition-colors duration-200">
+              Over ons
             </a>
           </li>
           <li>
-            <a href="/contact" class="text-base text-gray-500 hover:text-gray-900">
+            <a href="/contact" class="text-base text-gray-500 hover:text-gray-900 transition-colors duration-200">
               Contact
             </a>
           </li>
@@ -50,16 +55,16 @@ const currentYear = new Date().getFullYear();
       <div>
         <h3 class="text-sm font-semibold text-gray-600 tracking-wider uppercase">Locatie</h3>
         <div class="mt-4 space-y-4 text-base text-gray-500">
-          <p>
+          <a href=`${contactDetails.address.href}` target="_blank"><p class="text-gray-500 hover:text-gray-900 transition-colors duration-200">
             {contactDetails.address.street}<br />
             {contactDetails.address.postalCode} {contactDetails.address.city}
-          </p>
+          </p></a>
           <div>
             <p class="font-medium">Werkplaats:</p>
-            <p>
+            <a href=`${contactDetails.visitAdress.href}` target="_blank"><p class="text-gray-500 hover:text-gray-900 transition-colors duration-200">
               {contactDetails.visitAdress.street}<br />
               {contactDetails.visitAdress.postalCode} {contactDetails.visitAdress.city}
-            </p>
+            </p></a>
           </div>
         </div>
       </div>
@@ -68,6 +73,8 @@ const currentYear = new Date().getFullYear();
       <p class="text-base text-gray-400 text-center">
         &copy; {currentYear} Gemak op Wielen. Alle rechten voorbehouden.
       </p>
+      <p class="text-base text-gray-400 text-center">
+        <a class="hover:text-gray-900 transition-colors duration-200" href="/algemene-voorwaarden" target="_blank">Algemene voorwaarden</a> | <a class="hover:text-gray-900 transition-colors duration-200" href="/privacybeleid" target="_blank">Privacybeleid</a>
     </div>
   </div>
 </footer>

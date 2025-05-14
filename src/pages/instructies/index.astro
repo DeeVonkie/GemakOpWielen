@@ -1,0 +1,83 @@
+---
+// filepath: /Users/demianvonk/Documents/GemakOpWielen/src/pages/instructies/index.astro
+import Layout from '../../layouts/Layout.astro';
+
+// Dynamically import all `.astro` files in the `instructies` folder as raw content
+const pages = import.meta.glob('./*.astro', { eager: true, query: '?raw', import: 'default' });
+
+// Extract page paths and titles/descriptions from the `Layout` props
+const instructies = Object.entries(pages).map(([path, content]) => {
+  const href = path.replace('./', '/instructies/').replace('.astro', '');
+
+  // Extract `title` and `description` from the `Layout` component
+  const layoutMatch = (content as string).match(/Layout\s+title="([^"]+)"\s+description="([^"]+)"/);
+  const label = layoutMatch ? layoutMatch[1].replace('Instructies | ', '') : href.split('/').pop().replace('-', ' ').replace(/^\w/, c => c.toUpperCase());
+  const description = layoutMatch ? layoutMatch[2] : '';
+
+  return { href, label, description };
+});
+---
+
+<Layout 
+  title="Instructies"
+  description="Overzicht van alle instructies voor het gebruik van de voorzieningen."
+>
+  <!-- Hero Section -->
+  <div class="bg-white">
+    <div class="max-w-7xl mx-auto">
+      <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center py-16 lg:py-24">
+          <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+            <span class="block">Bekijk onze</span>
+            <span class="block text-primary-700">handleidingen</span>
+          </h1>
+          <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl">
+            Hier vindt u een overzicht van alle instructies voor het gebruik van de toiletwagen.
+          </p>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {instructies.length < 3 ? (
+            <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+                {instructies.map((item) => (
+                <div class="block bg-white rounded-lg shadow-lg p-6 text-center">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900">{item.label}</h3>
+                        <p class="mt-2 text-gray-600">{item.description}</p>
+                    </div>
+
+
+                    <div class="flex justify-center space-x-4">
+                        <a href={item.href} class="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-primary-700 hover:bg-primary-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                Handleiding bekijken
+                        </a>
+                    </div>
+                </div>
+                ))}
+            </div>
+        ) : (
+            <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {instructies.map((item) => (
+                <div class="block bg-white rounded-lg shadow-lg p-6 text-center">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900">{item.label}</h3>
+                        <p class="mt-2 text-gray-600">{item.description}</p>
+                    </div>
+
+
+                    <div class="flex justify-center space-x-4">
+                        <a href={item.href} class="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-primary-700 hover:bg-primary-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                Handleiding bekijken
+                        </a>
+                    </div>
+                </div>
+                ))}
+            </div>
+        )}
+    </div>
+  </section>
+</Layout>
